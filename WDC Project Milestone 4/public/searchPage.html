@@ -1,0 +1,423 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link href='https://fonts.googleapis.com/css?family=Courgette' rel='stylesheet'>
+	<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+	<link rel="stylesheet" type="text/css" href="stylesheets/JEM.css">
+	<title>JEM Hotels</title>
+	<style>
+	#submit {font-weight:bold; background-color:gold; color: #2980B9; font-size:15px; position:relative; top:210px; left:160px;}
+	#searchInfo {width:720px; flex: 0 1 720px; padding: 20px 50px; font-size:20px;}
+	#sidebar {display:flex; flex-flow:column; width:200px; float: left; clear: right; }
+	.listView {display: none; flex:4 4 auto; float: right; clear: left; }
+	#viewToggle {height: 80px; padding: 0 0 10px 0; text-align: center; font-weight: bold;}
+	#searchBox2 {
+		border-radius:5px;
+		border: solid 2px #3B5C8A;
+		position:relative;
+		background-color:whitesmoke;
+		margin: 2px;
+		padding:0px 15px;
+	}
+	.searchBoxRow2 {
+		display: flex;
+		flex-flow:row;
+		font-family: sans-serif;
+		color:#3B5C8A;
+		font-weight: bold;
+		text-align: left;
+		height: 35px;
+		margin: 10px auto;
+		padding: 0px;
+	}
+	.searchInput1 {
+
+		font-family: sans-serif;
+		display:block;
+		color:#3B5C8A;
+		border-radius:5px;
+		border: solid 0px rgb(200,170,0);
+		position:relative;
+		background-color:white;
+		padding:0px 7px;
+		max-width: 140px
+
+	}
+	.searchInput2 {
+		background-color: #3B5C8A;
+		font-family: sans-serif;
+		display:block;
+		color:white;
+		border-radius:5px;
+		border: solid 0px rgb(200,170,0);
+		position:relative;
+		background-color:#3B5C8A;
+		padding:0px 7px;
+		max-width: 140px
+	}
+
+	#searchLocation2 {margin: 0px ; width:120px; }
+	select {height:20px; margin:0 10px;}
+
+	#searchButton {position: absolute; margin:5px 0px; float:right; clear:left; right:10px; width:170px; max-width:170px; height: 30px; font-size:20px; z-index: 1; box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);}
+
+	.filters {flex:1 1 auto; padding: 20px 20px; height:100%;}
+	.result {background-color:white; margin:30px; padding:0px; overflow: hidden;}
+	.listImage {width:150px; height: 155px; float:left;}
+
+	.image {max-width: 150px; max-height: 155px; margin: auto;}
+	.listInfo {display:block; float:left; padding:15px;}
+
+	#sorts {display: flex; justify-content:space-around; padding: 20px;}
+	.mapView {display: none; flex:4 4 auto; float: right; clear: left;}
+
+	#infoWindow {max-width: 250px; font-size: 16px; padding: 10px}
+	.infowindowImage {width: 240px; margin:auto}
+	.show {display: block;}
+
+	.btn-group .button {
+		background-color: #4e7bba;
+		border: 1px solid #3B5C8A;
+		color: whitesmoke;
+		padding: 5px 30px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		cursor: pointer;
+		float: left;
+	}
+	.btn-group .button:not(:last-child) {
+		border-right: none; /* Prevent double borders */
+	}
+	.btn-group .button:hover {
+		background-color: #3B5C8A;
+	}
+	a#searchBox2 {
+		color: whitesmoke;
+	}
+	a#searchBox2:hover{
+		background-color:#4e7bba;
+	}
+	.searchInput2:hover{
+		background-color:#4e7bba;
+	}
+
+	#hotelInfo {flex: 0 1 720px; padding: 20px 50px; font-size:20px;}
+
+	#carousel {float:left; height: 400px; width:600px; margin: 50px auto}
+
+	#info {}
+
+</style>
+</head>
+<body onload = "onload(); search()">
+	<div id = "main">
+		<header >
+			<div id = "heading">
+				<div id = "logo">
+					<h1>Dinner</h1>
+				</div>
+				<div id = "navList" >
+					<ul>
+						<li class ="navItem"><a href ="index.html" style="text-decoration: none; color: #3B5C8A">Home</a></li>
+						<li onclick="signInDropdown()" id="signIn" class="navItem hidden show" >Sign In
+							<form id="signInDropdown" class="dropdownContent hidden" onclick="signInDropdown()">
+								<p>Username
+									<input type="text" class="signInInput" id = "userName">
+								</p>
+								<p>Password
+									<input type="text" class="signInInput" id = "password">
+								</p>
+								<button type="button" class="searchInput" id = "Login" onclick = "accountVarification(this.form)">Login</button>
+								<a href="createaccount.html" style=" color:blue"><p>Create account</p></a>
+							</form>
+						</li>
+						<li onclick = "myAccountDropdown()" class="navItem hidden" id = "myAccount">My Account
+							<div id = "myAccountDropdown" class="dropdownContent hidden">
+								<p>Bookings</p>
+								<p>Account Management</p>
+								<p onclick="signOut()">Sign Out</p>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</header>
+		<div id ="content">
+			<div id = "page" class = "hidden show">
+				<div id="searchInfo">
+					<h3>Adelaide</h3>
+					<p><small>Check in to check out, Rooms: 1, Beds: 1</small></p>
+				</div>
+				<div id = "hotelInfo" class = "border hidden">
+				</div>
+				<div id = "search" class ="hidden show">
+					<div class="container">
+						<div id="sidebar">
+							<div id ="viewToggle" onclick="ViewToggle()">
+								Map View
+								<br>
+								<img src="images/mapicon.jpg" style="width: 60px" alt ="Google Maps">
+							</div>
+							<form id = "searchBox2">
+								<div class ="searchBoxRow2">
+									<div id="searchLocation2"><p>Search location</p>
+										<input type="text" id = "autocomplete" class = "searchInput1" placeholder="Search by location" name = "searchLocation">
+									</div>
+								</div>
+								<div class = "searchBoxRow2">
+									<div id = "checkIn"><p>Check in date</p>
+										<input type="date" class = "searchInput1" name = "checkIn">
+									</div>
+								</div>
+								<div class = "searchBoxRow2">
+									<div id = "checkOut"><p>Check out date</p>
+										<input type="date" class = "searchInput1" name = "checkOut">
+									</div>
+								</div>
+								<div class = "searchBoxRow2">
+									<div><p>Rooms</p></div>
+									<select id = "rooms" class = "searchInput1" name="rooms">
+										<option value="1" selected="selected">
+											1
+										</option>
+										<option value="2" >
+											2
+										</option>
+										<option value="3">
+											3
+										</option>
+										<option value="4">
+											4
+										</option>
+										<option value="5">
+											5
+										</option>
+										<option value="6">
+											6
+										</option>
+										<option value="7">
+											7
+										</option>
+										<option value="8">
+											8
+										</option>
+										<option value="9">
+											9
+										</option>
+										<option value="10">
+											10
+										</option>
+										<option value="11">
+											11
+										</option>
+										<option value="12">
+											12
+										</option>
+										<option value="13">
+											13
+										</option>
+										<option value="14">
+											14
+										</option>
+										<option value="15">
+											15
+										</option>
+										<option value="16">
+											16
+										</option>
+										<option value="17">
+											17
+										</option>
+										<option value="18">
+											18
+										</option>
+										<option value="19">
+											19
+										</option>
+										<option value="20">
+											20
+										</option>
+										<option value="21">
+											21
+										</option>
+										<option value="22">
+											22
+										</option>
+										<option value="23">
+											23
+										</option>
+										<option value="24">
+											24
+										</option>
+										<option value="25">
+											25
+										</option>
+										<option value="26">
+											26
+										</option>
+										<option value="27">
+											27
+										</option>
+										<option value="28">
+											28
+										</option>
+										<option value="29">
+											29
+										</option>
+										<option value="30">
+											30
+										</option>
+									</select>
+								</div>
+								<div class = "searchBoxRow2">
+									<div ><p>People</p></div>
+									<select id = "people" class = "searchInput1" name="people">
+										<option value="1" selected="selected">
+											1
+										</option>
+										<option value="2">
+											2
+										</option>
+										<option value="3">
+											3
+										</option>
+										<option value="4">
+											4
+										</option>
+										<option value="5">
+											5
+										</option>
+										<option value="6">
+											6
+										</option>
+										<option value="7">
+											7
+										</option>
+										<option value="8">
+											8
+										</option>
+										<option value="9">
+											9
+										</option>
+										<option value="10">
+											10
+										</option>
+										<option value="11">
+											11
+										</option>
+										<option value="12">
+											12
+										</option>
+										<option value="13">
+											13
+										</option>
+										<option value="14">
+											14
+										</option>
+										<option value="15">
+											15
+										</option>
+										<option value="16">
+											16
+										</option>
+										<option value="17">
+											17
+										</option>
+										<option value="18">
+											18
+										</option>
+										<option value="19">
+											19
+										</option>
+										<option value="20">
+											20
+										</option>
+										<option value="21">
+											21
+										</option>
+										<option value="22">
+											22
+										</option>
+										<option value="23">
+											23
+										</option>
+										<option value="24">
+											24
+										</option>
+										<option value="25">
+											25
+										</option>
+										<option value="26">
+											26
+										</option>
+										<option value="27">
+											27
+										</option>
+										<option value="28">
+											28
+										</option>
+										<option value="29">
+											29
+										</option>
+										<option value="30">
+											30
+										</option>
+									</select>
+								</div>
+								<div class ="searchBoxRow2">
+									<input type = "submit" value="Search" id="searchButton" class="searchInput2" style="text-decoration: none; color: white" >
+								</div>
+							</form>
+							<div class = "filters border" onclick = "filter()">
+								<h3>Filters</h3><br>
+								<div>
+									<h4>Star Rating</h4><br>
+									<input type="radio" class="starRating" name="starRating" checked>all<br>
+									<input type="radio" class="starRating" name="starRating">1<br>
+									<input type="radio" class="starRating" name="starRating">2<br>
+									<input type="radio" class="starRating" name="starRating">3<br>
+									<input type="radio" class="starRating" name="starRating">4<br>
+									<input type="radio" class="starRating" name="starRating">5<br><br>
+								</div>
+								<div>
+									<h4>Property Type</h4><br>
+									<input type="checkbox" class="propType" value="Hotel">Hotel<br>
+									<input type="checkbox" class="propType" value="Motel">Motel<br>
+									<input type="checkbox" class="propType" value="Bed and Breakfast">Bed and Breakfast<br>
+									<input type="checkbox" class="propType" value="Apartment">Apartment<br>
+									<input type="checkbox" class="propType" value="Penthouse">Penthouse<br>
+									<input type="checkbox" class="propType" value="Mountain Retreat">Mountain Retreat<br>
+									<input type="checkbox" class="propType" value="Underpass">Underpass<br>
+								</div>
+							</div>
+						</div>
+						<div class= "listView show">
+							<div class = "border" id = "sorts">
+								<h4 style="vertical-align:middle">Sort by:</h4>
+								<div id ="currentSorts"></div>
+								<div class="btn-group">
+									<button onclick="sort('price')" class="button">Price</button>
+									<button onclick="sort('rating')" class="button">User Ratings</button>
+									<button onclick="sort('distance from search')" class="button">Distance from Search</button>
+								</div>
+							</div>
+							<div id = "results">
+							</div>
+						</div>
+						<div class="mapView border">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJkM1O7E7UJ642xeocLsFuhZZ-sN8oW7k&libraries=places&callback=createMap" async defer></script>
+		<script src="javascripts/JEM.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	</body>
+	</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link href='https://fonts.googleapis.com/css?family=Courgette' rel='stylesheet'>
+		<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+		<link rel="stylesheet" type="text/css" href="/stylesheets/JEM.css">
+		<title>JEM Hotels</title>
+		<style>
+			#page {padding:0px;}
+			#submit {font-weight:bold; background-color:whitesmoke; color: #3B5C8A; font-size:15px; position:relative; top:210px; left:160px;}
+			#searchInfo {width:720px; flex: 0 1 720px; padding: 20px 50px; font-size:20px;}
+			#sidebar {display:none; flex-flow:column; width:200px; float: left; clear: right; }
+			.listView {display: none; flex:4 4 auto; float: right; clear: left; z-index: 1}
+			
+			.Edit {
+				position:absolute;
+				float: right;
+				width: 100px;
+				height: 30px;
+				font-family: Raleway;
+				color: #3B5C8A;
+				font-weight: bold;
+				font-size: 100%;
+				margin:10px 650px;
+			}
+			.result {margin:30px; padding:0px;}
+			.image {width:150px; height: 130px}
+			.show {display: block;}
+			.hotelname {
+				font-size: 20px;
+				position: fixed;
+				margin: 12px 170px
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<div id = "heading">
+				<div id = "logo">
+					<h1>JEM Hotels</h1>
+				</div>
+				<div id = "navList" >
+					<ul>
+						<li class ="navItem"><a href ="/index.html" style="text-decoration: none; color: #3B5C8A">Home</a></li>
+						<li onclick="signInDropdown()" id="signIn" class="navItem hidden show" >Sign In
+						<form id="signInDropdown" class="dropdownContent hidden" onclick="signInDropdown()">
+								<p>Username
+								<input type="text" class="signInInput" id = "userName"></p>
+								<p>Password
+								<input type="text" class="signInInput" id = "password"></p>
+								<button type="button" class="searchInput" id = "Login" onclick = "accountVarification(this.form)">Login</button>
+								<a href="/createaccount.html" style=" color:blue"><p>Create account</p></a>
+						</form>
+						</li>
+						<li class="navItem hidden" id = "myAccount">My Account</li>
+					</ul>
+				</div>
+			</div>
+		</header>
+		<div id = "content" class = "clearfix">
+			<div id="container" class="container clearfix">
+				<div id = "page">
+				<div id="searchInfo">
+					<h3>Hotel Management</h3>
+					<p><small>Manage your hotel's information</small></p>
+				</div>
+				<div class="container">
+					<div class= "listView show">
+						<div class = "result border">
+							<p class="hotelname"><b>Hotel Name</b></p>
+							<button class="Edit">Edit</button>
+							<div class = "image border">
+							</div>
+						</div>
+						<div class = "result border">
+							<p class="hotelname"><b>Hotel Name</b></p>
+							<button class="Edit">Edit</button>
+							<div class = "image border">
+							</div>
+						</div>
+						<div class = "result border">
+							<p class="hotelname"><b>Hotel Name</b></p>
+							<button class="Edit">Edit</button>
+							<div class = "image border">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>		
+		<script src="/javascripts/JEM.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	</body>
+	</html>
